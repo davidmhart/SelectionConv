@@ -1,0 +1,30 @@
+# Simple Segmentation
+python scripts/segmentation.py input_ims/test.jpg
+
+# Cubemap Segmentation
+python scripts/segmentation.py input_ims/7fBQw.jpg --image_type cubemap --device cpu
+
+# Simple 2D Image Style Transfer
+python scripts/styletransfer.py input_ims/test.jpg style_ims/style0.jpg
+
+# Panorama Style Transfer
+python scripts/styletransfer.py input_ims/test360pan.jpg style_ims/style0.jpg --image_type panorama
+
+# Masked Image Style Transfer
+python scripts/styletransfer.py input_ims/FlyingBird.jpg style_ims/style6.jpg --mask input_ims/FlyingBird_mask.jpg
+
+# Cubemap Sphere Style Transfer
+python scripts/styletransfer.py input_ims/test360b.jpg style_ims/style0.jpg --image_type cubemap --device cpu
+
+# Texture Style Transfer
+python scripts/styletransfer.py input_ims/teddy.png style_ims/style2.jpg --image_type texture --mesh input_ims/teddy.obj --device cpu
+
+# Superpixel Style Transfer
+python scripts/styletransfer.py input_ims/test.jpg style_ims/style0.jpg --image_type superpixel
+
+# Simple Depth Prediction
+python scripts/depth_prediction.py input_ims/test.jpg
+
+# Superpixel Depth Prediction
+python scripts/depth_prediction.py input_ims/street.jpg --image_type superpixel
+
