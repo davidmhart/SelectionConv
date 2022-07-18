@@ -1,5 +1,8 @@
 # SelectionConv: Convolutional Neural Networks for Non-rectilinear Image Data
 The original Pytorch Geometric implementation for SelectionConv: Convolutional Neural Networks for Non-rectilinear Image Data, to be presented at ECCV 2022.
+
+[Project Page](https://davidmhart.github.io/SelectionConv/)
+
 Paper: Coming Soon
 
 ![](teaser.png)
