@@ -1,0 +1,272 @@
+<!Doctype html>
+<html lang="en">
+    <head>
+        <title>SelectionConv: Convolutional Neural Networks for Non-rectilinear Image Data</title>
+
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="author" content="David Hart">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- <link rel="icon" type="image/png" href="data/bunny.png"/> -->
+
+        <link rel="stylesheet" type="text/css" href="css/style_project_page.css?cache=7733391418498779679">
+        <link href="https://fonts.googleapis.com/css?family=Arvo|Roboto&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css">
+        <link rel="stylesheet" href="https://unpkg.com/@glidejs/glide/dist/css/glide.core.min.css">
+        <!-- <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script> -->
+        <script src="https://unpkg.com/@glidejs/glide"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" id="">
+		</script>
+		<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+         <script type="text/x-mathjax-config;executed=true">
+            MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+        </script>
+        <style type="text/css">
+            .side-text {
+                width:60%;
+                display:inline-block;
+                vertical-align:top;
+            }
+            .side-image {
+                width: 38%;
+                display: inline-block;
+                vertical-align: top;
+            }
+            .controls {
+                margin-bottom: 10px;
+            }
+            .left-controls {
+                display: inline-block;
+                vertical-align: top;
+                width: 80%;
+            }
+            .right-controls {
+                display: inline-block;
+                vertical-align: top;
+                width: 19%;
+                text-align: right;
+            }
+            .render_window {
+                display: inline-block;
+                vertical-align: middle;
+                box-shadow: 1px 0px 5px black;
+                margin-right: 10px;
+                margin-bottom: 10px;
+                width: calc(33% - 10px);
+            }
+            .progress {
+                background: #666;
+                position: relative;
+                height: 5px;
+                margin-bottom: -5px;
+                display: none;
+            }
+            .glide__slide:hover {cursor: grab;}
+            .glide__slide:active {cursor: grabbing;}
+            .glide__slide img {width: 90%;}
+            .glide__bullets {
+                text-align: center;
+            }
+            .glide__bullet--active {
+                color: #aaa;
+            }
+
+            @media (max-width: 400px) {
+                .render_window {
+                    display: block;
+                    width: 90%;
+                    margin: 10px auto;
+                }
+            }
+            @media (max-width: 700px) {
+                .side-image {
+                    display: block;
+                    width: 80%;
+                    margin: 10px auto;
+                }
+                .side-text {
+                    display: block;
+                    width: 100%;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="section">
+            <!--<h1 class="project-title">
+                Pano3D: A Holistic Benchmark and a Solid Baseline for 360<sup>o</sup> Depth Estimation
+            </h1>-->
+		<h1 class="project-title">
+                 \(\textbf{SelectionConv}\)
+            </h1>
+		<h1 class="project-title" style="margin:0;">
+                Convolutional Neural Networks for Non-rectilinear Image Data
+            </h1>
+            <div class="authors">
+                <a href=https://davidhartcv.com target="_blank" rel="noopener noreferrer">
+                    David Hart
+                </a>
+                ,
+                <a href=https://www.linkedin.com/in/mikeswhitney33/ target="_blank" rel="noopener noreferrer">
+                    Michael Whitney
+                </a>
+                , 
+                <a href=https://science.byu.edu/directory/bryan-morse target="_blank" rel="noopener noreferrer">
+                    Bryan Morse
+                </a>
+            </div>
+
+            <div class="affiliations">
+                <span>Brigham Young University, Provo, Utah, USA</span> &nbsp; &nbsp;<br/>
+            </div>
+
+            <div class="project-conference">                
+                To Be Presented at 
+		<a href=https://eccv2022.ecva.net// target="_blank" rel="noopener noreferrer">ECCV 2022</a>
+            </div>
+
+            <div class="project-icons">
+                <a href="" target="_blank" rel="noopener noreferrer">
+                    <i class="fa fa-file-text"></i> <br/>
+                    Paper
+                </a>
+				<a href="https://github.com/davidmhart/SelectionConv">
+                    <i class="fa fa-file"></i> <br/>
+                    Supplemental
+                </a>
+                <a href="https://github.com/davidmhart/SelectionConv">
+                    <i class="fa fa-github"></i> <br/>
+                    Code
+                </a>
+				<a href="https://github.com/davidmhart/SelectionConv">
+                    <i class="fa fa-video-camera"></i> <br/>
+                    Supplemental Video
+                </a>
+				
+            </div>
+            
+        <div class="content">
+            <p>
+                We present SelectionConv, a method for transfering the weights 2D CNNs to graph networks, allowing for a wide variety of applications irregular image domains, such as spherical images, superpixel methods, and even 3D meshes.
+            </p>
+        </div>
+
+        <video controls autoplay style="width:75%;">
+          <source src="videos/Selectionconv Supplementary Material 720p.mp4" type="video/mp4">
+        </video>
+            
+        <div class="section-title">Method</div>
+            
+			<img src="images/method.jpg" width="80%">
+			
+			<div class="content">
+                <p>
+                    Simple overview from paper. Use weight transfer figure.
+                </p>                	        
+				\(\Large i_d = \frac{1}{(1 - \delta_{1.25}) \times RMSE}\)
+            </div>
+			
+
+        <div class="section-title">Results</div>
+            <div class="content">
+                <p>
+                    Here, we give lots of cool results.
+                </p>                	        
+            </div>
+        
+            <h3>360 Style Transfer</h3>
+			
+			<table style="text-align:center"> <tbody>
+				<tr>
+				<td> <b> Original </td> <td> <b> Naive </td> <td> <b> SelectionConv </td>
+				<tr>
+				<td>
+				<iframe width="95%" height=200 allowfullscreen style="border-style:none;" src="https://cdn.pannellum.org/2.5/pannellum.htm#panorama=https://pannellum.org/images/tocopilla.jpg&amp;autoLoad=true"></iframe>
+				</td>
+				<td>
+				<iframe width="95%" height=200 allowfullscreen style="border-style:none;" src="https://cdn.pannellum.org/2.5/pannellum.htm#panorama=https://pannellum.org/images/alma.jpg&amp;autoLoad=true"></iframe>
+				</td>
+				<td>
+				<iframe width="95%" height=200 allowfullscreen style="border-style:none;" src="https://cdn.pannellum.org/2.5/pannellum.htm#panorama=https://pannellum.org/images/tocopilla.jpg&amp;autoLoad=true"></iframe>
+				</td>
+				</tr>
+				</tr>
+			</tbody> </table>
+			
+			
+			Failure Case
+			Where there is crossover
+			Include examples that you want in the spherical paper
+			sphere_ex4
+			sphere_ex4_ours
+			<iframe width="45%" height=300 allowfullscreen style="border-style:none;" src="https://cdn.pannellum.org/2.5/pannellum.htm#panorama=https://pannellum.org/images/tocopilla.jpg&amp;autoLoad=true"></iframe>
+            <iframe width="45%" height=300 allowfullscreen style="border-style:none;" src="https://cdn.pannellum.org/2.5/pannellum.htm#panorama=https://pannellum.org/images/alma.jpg&amp;autoLoad=true"></iframe>
+            
+			
+            <h3>Masked Style Transfer</h3>
+            
+            <h3>Mesh Style Transfer</h3>
+			
+			<style>
+			model-viewer {
+			  width: 300px;
+			  height: 300px;
+			}
+			</style>
+			
+			<table style="text-align:center"> <tbody>
+				<tr>
+				<td> <b> Original </td> <td> <b> Naive </td> <td> <b> SelectionConv </td>
+				<tr>
+				<td>
+				<model-viewer alt="Teddy Bear" src="meshes/test.glb" ar ar-modes="webxr scene-viewer quick-look" poster="meshes/test.webp" environment-image="neutral" seamless-poster shadow-intensity="1" camera-controls enable-pan></model-viewer>
+				</td>
+				<td>
+				<model-viewer alt="Teddy Bear" src="meshes/test.glb" ar ar-modes="webxr scene-viewer quick-look" poster="meshes/test.webp" environment-image="neutral" seamless-poster shadow-intensity="1" camera-controls enable-pan></model-viewer>
+				</td>
+				<td>
+				<model-viewer alt="Teddy Bear" src="meshes/test.glb" ar ar-modes="webxr scene-viewer quick-look" poster="meshes/test.webp" environment-image="neutral" seamless-poster shadow-intensity="1" camera-controls enable-pan></model-viewer>
+				</td>
+				</tr>
+				</tr>
+			</tbody> </table>
+			
+			Check out more cool results, like superpixel depth estimation and 360 segmentation in our paper?
+			
+            <h3>Superpixel Depth Estimation</h3>
+            
+            <h3>360 Segmentation</h3>
+            
+		<style>
+		citationblock{
+			margin: 0;
+		}
+
+		citationblock p {
+			padding: 15px;
+			background: #eee;
+			border-radius: 5px;
+		}
+
+		citationblock p::before {
+			content: '\201C';
+		}
+
+		citationblock p::after {
+			content: '\201D';
+		}
+		</style>
+
+
+		<citationblock>
+			<p>To be presented at ECCV 2022. Citation coming soon.</p>
+		</citationblock>
+
+		<div class="section-title">References</div>
+		<ol>
+		<li>
+			<a href="https://arxiv.org/pdf/1709.06158.pdf" id="Matterport3D" target="_blank" rel="noopener noreferrer"/>Chang, A., Dai, A., Funkhouser, T., Halber, M., Niessner, M., Savva, M., Song, S., Zeng, A. and Zhang, Y., 2017. Matterport3d: Learning from rgb-d data in indoor environments. arXiv preprint arXiv:1709.06158
+		</li>	
+		</ol>
+	</body>
+</html>

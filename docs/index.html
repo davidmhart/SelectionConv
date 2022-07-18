@@ -1,0 +1,398 @@
+<!Doctype html>
+<html lang="en">
+    <head>
+        <title>SelectionConv: Convolutional Neural Networks for Non-rectilinear Image Data</title>
+
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="author" content="David Hart">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- <link rel="icon" type="image/png" href="data/bunny.png"/> -->
+
+        <link rel="stylesheet" type="text/css" href="css/style_project_page.css?cache=7733391418498779679">
+        <link href="https://fonts.googleapis.com/css?family=Arvo|Roboto&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css">
+        <link rel="stylesheet" href="https://unpkg.com/@glidejs/glide/dist/css/glide.core.min.css">
+        <!-- <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script> -->
+        <script src="https://unpkg.com/@glidejs/glide"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" id="">
+		</script>
+		<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+         <script type="text/x-mathjax-config;executed=true">
+            MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+        </script>
+        <style type="text/css">
+            .side-text {
+                width:60%;
+                display:inline-block;
+                vertical-align:top;
+            }
+            .side-image {
+                width: 38%;
+                display: inline-block;
+                vertical-align: top;
+            }
+            .controls {
+                margin-bottom: 10px;
+            }
+            .left-controls {
+                display: inline-block;
+                vertical-align: top;
+                width: 80%;
+            }
+            .right-controls {
+                display: inline-block;
+                vertical-align: top;
+                width: 19%;
+                text-align: right;
+            }
+            .render_window {
+                display: inline-block;
+                vertical-align: middle;
+                box-shadow: 1px 0px 5px black;
+                margin-right: 10px;
+                margin-bottom: 10px;
+                width: calc(33% - 10px);
+            }
+            .progress {
+                background: #666;
+                position: relative;
+                height: 5px;
+                margin-bottom: -5px;
+                display: none;
+            }
+            .glide__slide:hover {cursor: grab;}
+            .glide__slide:active {cursor: grabbing;}
+            .glide__slide img {width: 90%;}
+            .glide__bullets {
+                text-align: center;
+            }
+            .glide__bullet--active {
+                color: #aaa;
+            }
+
+            @media (max-width: 400px) {
+                .render_window {
+                    display: block;
+                    width: 90%;
+                    margin: 10px auto;
+                }
+            }
+            @media (max-width: 700px) {
+                .side-image {
+                    display: block;
+                    width: 80%;
+                    margin: 10px auto;
+                }
+                .side-text {
+                    display: block;
+                    width: 100%;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="section">
+            <!--<h1 class="project-title">
+                Pano3D: A Holistic Benchmark and a Solid Baseline for 360<sup>o</sup> Depth Estimation
+            </h1>-->
+		<h1 class="project-title">
+                 \(\textbf{SelectionConv}\)
+            </h1>
+		<h1 class="project-title" style="margin:0;">
+                Convolutional Neural Networks for Non-rectilinear Image Data
+            </h1>
+            <div class="authors">
+                <a href=https://davidhartcv.com target="_blank" rel="noopener noreferrer">
+                    David Hart
+                </a>
+                ,
+                <a href=https://www.linkedin.com/in/mikeswhitney33/ target="_blank" rel="noopener noreferrer">
+                    Michael Whitney
+                </a>
+                , 
+                <a href=https://science.byu.edu/directory/bryan-morse target="_blank" rel="noopener noreferrer">
+                    Bryan Morse
+                </a>
+            </div>
+
+            <div class="affiliations">
+                <span>Brigham Young University, Provo, Utah, USA</span> &nbsp; &nbsp;<br/>
+            </div>
+
+            <div class="project-conference">                
+                To Be Presented at 
+		<a href=https://eccv2022.ecva.net// target="_blank" rel="noopener noreferrer">ECCV 2022</a>
+            </div>
+
+            <div class="project-icons">
+                <a href="https://github.com/davidmhart/SelectionConv" target="_blank" rel="noopener noreferrer">
+                    <i class="fa fa-file-text"></i> <br/>
+                    Paper
+                </a>
+				<a href="https://github.com/davidmhart/SelectionConv">
+                    <i class="fa fa-file"></i> <br/>
+                    Supplemental
+                </a>
+                <a href="https://github.com/davidmhart/SelectionConv">
+                    <i class="fa fa-github"></i> <br/>
+                    Code
+                </a>
+				<a href="https://drive.google.com/file/d/1rHwNpKDYrY6XGs73CLJAL8HpABhwIZUm/view?usp=sharing">
+                    <i class="fa fa-video-camera"></i> <br/>
+                    Video
+                </a>
+				
+            </div>
+            
+        <div class="content">
+            <p>
+                We present SelectionConv, a method for transfering the weights 2D CNNs to graph networks, allowing for a wide variety of applications irregular image domains, such as spherical images, superpixel methods, and even 3D meshes.
+            </p>
+        </div>
+            
+        <div class="section-title">Method</div>
+            
+			<img src="images/method.jpg" width="80%">
+			
+			<div class="content">
+                <p>
+                    Many irregular images can be repsented well in a graph-like structure, but these structures cannot be used as inputs to traditional 2D-CNNs. 
+                    In this work, we start with the original graph convolution operation by Kipf et. al., which simpily multiplies each node by a learned weight matrix and then aggretates its neighboring nodes (i.e. \( \mathbf{X}^{(k+1)} = \tilde{\mathbf{A}} \mathbf{X}^{(k)} \mathbf{W}\) ).
+                    We modify this convolution by preprocessing the adjacency matrix into multiple matrices, where each matrix represents a different spatial direction in the graph ( i.e. \( \mathbf{X}^{(k+1)} = \sum_m{\tilde{\mathbf{S}}_m \mathbf{X}^{(k)} \mathbf{W}_m} \) ).
+                    By doing so, we make the graph convolution commensuarate with 2D convolution, and thus can transfer weights to our irregular graphs.
+                </p>                	        
+		
+				
+            </div>
+			
+
+        <div class="section-title">Results</div>
+            <div class="content">
+                <p>
+                    Since our representation works independent of network or graph design, we can illustrate the effectiveness of our approach on various networks and image types. 
+                    We can perform tasks such as style transfer, segmentation, and depth prediction on spherical images, masked images, superpixel images, etc. 
+                    For the results shown here, we focus on style transfer since it is an easy visual of the benefits of our representation, but more tasks and domains are presented in our paper.
+                </p>                	        
+            </div>
+        
+            <h3>Spherical Style Transfer</h3>
+		    
+            <div class="content">
+                <p>
+            Our method can effectively stylize spherical images, without causing seams or distortion, especially near the poles of the sphere.
+                </p>
+            </div>
+                
+			<table style="text-align:center"> <tbody>
+				<tr>
+				<td> <b> Original </td> <td> <b> Naive </td> <td> <b> SelectionConv </td>
+				</tr>
+				<tr>
+				<td>
+				<iframe width="95%" height=200 allowfullscreen style="border-style:none;" src="https://cdn.pannellum.org/2.5/pannellum.htm#panorama=images/sphere_ex1.jpg&amp;preview=images/sphere_ex1.jpg"></iframe>
+				</td>
+				<td>
+				<iframe width="95%" height=200 allowfullscreen style="border-style:none;" src="https://cdn.pannellum.org/2.5/pannellum.htm#panorama=images/sphere_ex1_naive.jpg&amp;preview=images/sphere_ex1_naive.jpg"></iframe>
+				</td>
+				<td>
+				<iframe width="95%" height=200 allowfullscreen style="border-style:none;" src="https://cdn.pannellum.org/2.5/pannellum.htm#panorama=images/sphere_ex1_ours.jpg&amp;preview=images/sphere_ex1_ours.jpg"></iframe>
+				</td>
+				</tr>
+				
+				<tr>
+				<td>
+				<iframe width="95%" height=200 allowfullscreen style="border-style:none;" src="https://cdn.pannellum.org/2.5/pannellum.htm#panorama=images/sphere_ex2.jpg&amp;preview=images/sphere_ex2.jpg"></iframe>
+				</td>
+				<td>
+				<iframe width="95%" height=200 allowfullscreen style="border-style:none;" src="https://cdn.pannellum.org/2.5/pannellum.htm#panorama=images/sphere_ex2_naive.jpg&amp;preview=images/sphere_ex2_naive.jpg"></iframe>
+				</td>
+				<td>
+				<iframe width="95%" height=200 allowfullscreen style="border-style:none;" src="https://cdn.pannellum.org/2.5/pannellum.htm#panorama=images/sphere_ex2_ours.jpg&amp;preview=images/sphere_ex2_ours.jpg"></iframe>
+				</td>
+				</tr>
+				
+				<tr>
+				<td>
+				<iframe width="95%" height=200 allowfullscreen style="border-style:none;" src="https://cdn.pannellum.org/2.5/pannellum.htm#panorama=images/sphere_ex3.jpg&amp;preview=images/sphere_ex3.jpg"></iframe>
+				</td>
+				<td>
+				<iframe width="95%" height=200 allowfullscreen style="border-style:none;" src="https://cdn.pannellum.org/2.5/pannellum.htm#panorama=images/sphere_ex3_naive.jpg&amp;preview=images/sphere_ex3_naive.jpg"></iframe>
+				</td>
+				<td>
+				<iframe width="95%" height=200 allowfullscreen style="border-style:none;" src="https://cdn.pannellum.org/2.5/pannellum.htm#panorama=images/sphere_ex3_ours.jpg&amp;preview=images/sphere_ex3_ours.jpg"></iframe>
+				</td>
+				</tr>
+				
+			</tbody> </table>
+			
+            <div class="content">
+                <p>
+			In the next example, note the failure case near the ceiling where the crossover in the graph occurs along a visually important boundary.
+                </p>
+            </div>
+                    
+			<table style="text-align:center"> <tbody>
+				<tr>
+				<td> <b> Original </td> <td> <b> SelectionConv </td>
+				</tr>
+				<tr>
+				<td>
+				<iframe width=450 height=300 allowfullscreen style="border-style:none;" src="https://cdn.pannellum.org/2.5/pannellum.htm#panorama=images/sphere_ex4.jpg&amp;preview=images/sphere_ex4.jpg"></iframe>
+				</td>
+				<td>
+				<iframe width=450 height=300 allowfullscreen style="border-style:none;" src="https://cdn.pannellum.org/2.5/pannellum.htm#panorama=images/sphere_ex4_ours.jpg&amp;preview=images/sphere_ex4_ours.jpg"></iframe>
+				</td>
+				</tr>
+			</tbody> </table>
+			
+			
+            <h3>Masked Style Transfer</h3>
+            
+            <div class="content">
+                <p>
+            SelectionConv allows for native stylization of masked regions, without the need to pre- or post-process the output after the network is applied.
+            This makes for regions that much more closely match stylization statistics.
+                </p>
+            </div>
+            
+            <table style="text-align:center"> <tbody>
+				<tr>
+				<td> <b> Original </td> <td> <b> Mask </td> <td> <b> SelectionConv Result </td>
+				</tr>
+				<tr>
+				<td>
+				<img src="images/masked_ex1.jpg" width="80%">
+                </td>
+				<td>
+                <img src="images/masked_ex1_mask.jpg" width="80%">
+				</td>
+                <td>
+                <img src="images/masked_ex1_ours.jpg" width="80%">
+				</td>
+				</tr>
+                <tr>
+				<td>
+				<img src="images/masked_ex2.jpg" width="80%">
+                </td>
+				<td>
+                <img src="images/masked_ex2_mask.jpg" width="80%">
+				</td>
+                <td>
+                <img src="images/masked_ex2_ours.jpg" width="80%">
+				</td>
+				</tr>
+			</tbody> </table>
+            
+            <div class="content">
+                <p>
+            We can also seemlessly combine multiple styles in the same image, as shown in the example below.
+                </p>
+            </div>
+            
+            <table style="text-align:center"> <tbody>
+				<tr>
+				<td>
+                <table style="text-align:center"> <tbody>
+                <tr>
+				<img src="images/style3.jpg" width="50%">
+                </tr>
+                <tr>
+				<img src="images/style4.jpg" width="50%">
+                </tr>
+                <tr>
+				<img src="images/style7.jpg" width="50%">
+                </tr>
+                </tbody> </table>
+                </td>
+                <td>
+                <img src="images/masked_ex3_ours.jpg" width="80%">
+				</td>
+				</tr>
+			</tbody> </table>
+            
+            
+            <h3>Mesh Style Transfer</h3>
+            
+            <div class="content">
+                <p>
+            Our method can improve stylization consistency of 3D meshes along the boundaries of texture map seams.
+                </p>
+            </div>
+                    
+			<style>
+			model-viewer {
+			  width: 300px;
+			  height: 300px;
+			}
+			</style>
+			
+			<table style="text-align:center"> <tbody>
+				<tr>
+				<td> <b> Original </td> <td> <b> Naive </td> <td> <b> SelectionConv </td>
+				<tr>
+				<td>
+				<model-viewer alt="Teddy Bear" src="meshes/teddy.glb" ar ar-modes="webxr scene-viewer quick-look" environment-image="neutral" seamless-poster shadow-intensity="1" camera-controls enable-pan></model-viewer>
+				</td>
+				<td>
+				<model-viewer alt="Teddy Bear Naive Stylization" src="meshes/teddy_naive.glb" ar ar-modes="webxr scene-viewer quick-look" environment-image="neutral" seamless-poster shadow-intensity="1" camera-controls enable-pan></model-viewer>
+				</td>
+				<td>
+				<model-viewer alt="Teddy Bear SelectionConv Stylization" src="meshes/teddy_ours.glb" ar ar-modes="webxr scene-viewer quick-look" environment-image="neutral" seamless-poster shadow-intensity="1" camera-controls enable-pan></model-viewer>
+				</td>
+				</tr>
+				</tr>
+				
+				<tr>
+				<td>
+				<model-viewer alt="Donut" src="meshes/donut.glb" ar ar-modes="webxr scene-viewer quick-look" environment-image="neutral" seamless-poster shadow-intensity="1" camera-controls camera-orbit="270deg 45deg 10m" enable-pan></model-viewer>
+				</td>
+				<td>
+				<model-viewer alt="Donut Naive Stylization" src="meshes/donut_naive.glb" ar ar-modes="webxr scene-viewer quick-look" environment-image="neutral" seamless-poster shadow-intensity="1" camera-controls camera-orbit="270deg 45deg 10m" enable-pan></model-viewer>
+				</td>
+				<td>
+				<model-viewer alt="Donut SelectionConv Stylization" src="meshes/donut_ours.glb" ar ar-modes="webxr scene-viewer quick-look" environment-image="neutral" seamless-poster shadow-intensity="1" camera-controls camera-orbit="270deg 45deg 10m" enable-pan></model-viewer>
+				</td>
+				</tr>
+				</tr>
+				
+				<tr>
+				<td>
+				<model-viewer alt="Cow" src="meshes/cow.glb" ar ar-modes="webxr scene-viewer quick-look" environment-image="neutral" seamless-poster shadow-intensity="1" camera-controls camera-orbit="225deg 60deg 8m"  enable-pan></model-viewer>
+				</td>
+				<td>
+				<model-viewer alt="Cow Naive Stylization" src="meshes/cow_naive.glb" ar ar-modes="webxr scene-viewer quick-look" environment-image="neutral" seamless-poster shadow-intensity="1" camera-controls camera-orbit="225deg 60deg 8m"  enable-pan></model-viewer>
+				</td>
+				<td>
+				<model-viewer alt="Cow SelectionConv Stylization" src="meshes/cow_ours.glb" ar ar-modes="webxr scene-viewer quick-look" environment-image="neutral" seamless-poster shadow-intensity="1" camera-controls camera-orbit="225deg 60deg 8m" enable-pan></model-viewer>
+				</td>
+				</tr>
+				</tr>
+				
+			</tbody> </table>
+            </br>
+            <div class="content">
+                <p>
+			Checkout more results and examples in our paper and supplemental material.
+			    </p>
+            </div>
+                    
+		<style>
+		citationblock{
+			margin: 0;
+		}
+
+		citationblock p {
+			padding: 15px;
+			background: #eee;
+			border-radius: 5px;
+		}
+		</style>
+
+
+		<citationblock>
+			<p>To be presented at ECCV 2022. Citation coming soon.</p>
+		</citationblock>
+
+	</body>
+</html>

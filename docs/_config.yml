@@ -1,0 +1,12 @@
+theme: jekyll-theme-minimal
+title: SelectionConv
+show_downloads: true
+description: Official Project Page for SelectionConv
+
+github:
+    repository_url: https://github.com/davidmhart/SelectionConv
+    is_project_page: true
+    repository_name: SelectionConv
+    owner_url: https://github.com/davidmhart
+    owner_name: David Hart
+
