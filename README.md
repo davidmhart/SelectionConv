@@ -3,7 +3,7 @@ The original Pytorch Geometric implementation for SelectionConv: Convolutional N
 
 [Project Page](https://davidmhart.github.io/SelectionConv/)
 
-Paper: Coming Soon
+[Paper](https://arxiv.org/abs/2207.08979)
 
 ![](teaser.png)
 
