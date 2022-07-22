@@ -94,7 +94,7 @@ def main():
         pers_img = equi2pers(np.transpose(image, (2, 0, 1)), rots, HEIGHT, WIDTH, FOV)
         cv.imshow(WINDOW_NAME, np.transpose(pers_img, (1, 2, 0)))
 
-        key = cv.waitKey()
+        key = cv.waitKey(100)
         if key & 0xFF == ord("q"):
             break
         elif key & 0xFF in (ord("a"), 81):
@@ -136,6 +136,8 @@ def main():
             rots["yaw"] = 0
             rots["pitch"] = 3 * np.pi / 2
 
+        if cv.getWindowProperty(WINDOW_NAME, cv.WND_PROP_VISIBLE) < 1:
+            break
 
 if __name__ == "__main__":
     main()
