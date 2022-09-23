@@ -150,10 +150,10 @@
 			
 			<div class="content">
                 <p>
-                    Many irregular images can be repsented well in a graph-like structure, but these structures cannot be used as inputs to traditional 2D-CNNs. 
-                    In this work, we start with the original graph convolution operation by Kipf et. al., which simpily multiplies each node by a learned weight matrix and then aggretates its neighboring nodes (i.e. \( \mathbf{X}^{(k+1)} = \tilde{\mathbf{A}} \mathbf{X}^{(k)} \mathbf{W}\) ).
+                    Many irregular images can be represented well in a graph-like structure, but these structures cannot be used as inputs to traditional 2D CNNs. 
+                    In this work, we start with the original graph convolution operation by Kipf et. al., which simply multiplies each node by a learned weight matrix and then aggregates its neighboring nodes (i.e. \( \mathbf{X}^{(k+1)} = \tilde{\mathbf{A}} \mathbf{X}^{(k)} \mathbf{W}\) ).
                     We modify this convolution by preprocessing the adjacency matrix into multiple matrices, where each matrix represents a different spatial direction in the graph ( i.e. \( \mathbf{X}^{(k+1)} = \sum_m{\tilde{\mathbf{S}}_m \mathbf{X}^{(k)} \mathbf{W}_m} \) ).
-                    By doing so, we make the graph convolution commensuarate with 2D convolution, and thus can transfer weights to our irregular graphs.
+                    By doing so, we make the graph convolution commensurate with 2D convolution, and thus can transfer weights to our irregular graphs.
                 </p>                	        
 		
 				
