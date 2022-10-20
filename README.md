@@ -7,6 +7,8 @@ The original Pytorch Geometric implementation for SelectionConv: Convolutional N
 
 ![](teaser.png)
 
+Also, check out are follow-on work: [Interpolated SelectionConv for Spherical Images and Surfaces](https://github.com/davidmhart/interpolated-selectionconv)
+
 ## Install
 This work relies heavily on the [Pytorch](https://pytorch.org/) and [Pytorch Geometric](https://www.pyg.org/) libraries. Make sure to have functioning versions of both libraries. The rest of the needed packages can be installed using the `requirements.txt` file.
 
