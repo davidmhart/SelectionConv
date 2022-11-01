@@ -53,3 +53,15 @@ For our evaluation on the [Stanford2D-3DS dataset](http://buildingparser.stanfor
 Make sure to change the `config_eval.py` file to have the proper location of the dataset and the network weights. Then, you can run the evaluation code with commands such as:
 
 ``python segmentation_eval/run_eval.py cubemap cuda``
+
+## Citation
+
+``
+@InProceedings{SelectionConv,
+author = {Hart, David and Whitney, Michael and Morse, Bryan},
+title = {{SelectionConv:} Convolutional Neural Networks for Non-rectilinear Image Data},
+booktitle = {European Conference on Computer Vision},
+month = {October},
+year = {2022}
+} 
+``
