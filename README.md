@@ -56,7 +56,7 @@ Make sure to change the `config_eval.py` file to have the proper location of the
 
 ## Citation
 
-``
+```
 @InProceedings{SelectionConv,
 author = {Hart, David and Whitney, Michael and Morse, Bryan},
 title = {{SelectionConv:} Convolutional Neural Networks for Non-rectilinear Image Data},
@@ -64,4 +64,5 @@ booktitle = {European Conference on Computer Vision},
 month = {October},
 year = {2022}
 } 
-``
+```
+
