@@ -3,7 +3,9 @@ The original Pytorch Geometric implementation for SelectionConv: Convolutional N
 
 [Project Page](https://davidmhart.github.io/SelectionConv/)
 
-[Paper](https://arxiv.org/abs/2207.08979)
+[Paper](https://www.ecva.net/papers/eccv_2022/papers_ECCV/papers/136670310.pdf)
+
+[Supplemental](https://www.ecva.net/papers/eccv_2022/papers_ECCV/papers/136670310-supp.pdf)
 
 ![](teaser.png)
 
